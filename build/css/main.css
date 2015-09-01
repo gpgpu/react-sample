@@ -57,3 +57,7 @@
 #advancedSearchElements{
   margin: 10px 0px;
 }
+
+.error {
+  color: #ff0000;
+}

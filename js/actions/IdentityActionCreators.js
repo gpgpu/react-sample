@@ -1,4 +1,5 @@
 var Dispatcher = require('../dispatcher/IamAdminAppDispatcher');
+var IdentityWebAPIUtils = require('../utils/IdentityWebAPIUtils');
 var AppConstants = require('../constants/AppConstants');
 var ActionTypes = AppConstants.ActionTypes;
 
@@ -11,9 +12,10 @@ module.exports = {
   },
 
   searchIdentities: function(params){
-    Dispatcher.dispatch({
-      type: ActionTypes.SEARCH_IDENTITIES,
-      params: params
-    });
+    IdentityWebAPIUtils.getIdentities(params);
+  },
+
+  updateIdentity: function(identity){
+    IdentityWebAPIUtils.saveIdentity(identity);
   }
 };

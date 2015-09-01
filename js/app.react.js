@@ -40,7 +40,7 @@ var App = React.createClass({
 var routes = (
   <Route handler={App} >
     <Route path="home" handler={Main} />
-    <Route path="identities" handler={IdentitySection} />
+    <Route name="identities" path="identities" handler={IdentitySection} />
     <Route path="identities/:id" handler={Details} />
     <Route path="changepassword" handler={ChangePasswordSection} />
     <Route path="aboutus" handler={AboutUs} />

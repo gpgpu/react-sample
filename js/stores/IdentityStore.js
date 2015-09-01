@@ -15,6 +15,15 @@ function deleteIdentity(id){
   delete identities[id];
 }
 
+//helpers
+function putIdentitiesInStore(identityArray){
+  identities = {};
+  for (var i = 0; i < identityArray.length; i++){
+    var iden = identityArray[i];
+    identities[iden.id] = iden;
+  }
+}
+
 // store
 var IdentityStore = assign({}, EventEmitter.prototype, {
   addChangeListener: function(callback){
@@ -29,7 +38,12 @@ var IdentityStore = assign({}, EventEmitter.prototype, {
 
   getAll: function(){
     return identities;
-  }
+  },
+  getIdentity: function(id){
+    return identities[id];
+  },
+
+
 });
 
 Dispatcher.register(function(action){
@@ -38,17 +52,12 @@ Dispatcher.register(function(action){
         deleteIdentity(action.id);
         IdentityStore.emitChange();
         break;
-      case ActionTypes.SEARCH_IDENTITIES:
-        var ident1 = {};
-        ident1.id = "1";
-        ident1.name="number 1";
-        var ident2 = {};
-        ident2.id = "2";
-        ident2.name="number 2";
-
-        identities[ident1.id] = ident1;
-        identities[ident2.id] = ident2;
-
+      case ActionTypes.RECEIVE_IDENTITIES:
+        putIdentitiesInStore(action.identities);
+        IdentityStore.emitChange();
+        break;
+      case ActionTypes.RECEIVE_UPDATED_IDENTITY:
+        identities[action.identity.id] = action.identity;
         IdentityStore.emitChange();
         break;
     }

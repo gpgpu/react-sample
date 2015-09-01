@@ -28,10 +28,7 @@ var SearchSection = React.createClass({
 			searchParams["uuid"] = uuid;
 		}
 
-    IdentityActionCreators.searchIdentities({
-      type: ActionTypes.SEARCH_IDENTITIES,
-      params: searchParams
-    })
+    IdentityActionCreators.searchIdentities(searchParams);
   },
 
   toggleSearchMode: function(){

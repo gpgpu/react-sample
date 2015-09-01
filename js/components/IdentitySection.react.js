@@ -41,6 +41,7 @@ var IdentitySection = React.createClass({
             <tr>
               <th>Id</th>
               <th>Name</th>
+              <th>Status</th>
               <th>&nbsp;</th>
             </tr>
             <tbody>
